@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFPSController : MonoBehaviour
 {
     private float rotationSpeed;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera fpsCamera;
     Vector3 impactPoint;
     [SerializeField] private bool rayHit;
 
@@ -43,14 +43,14 @@ public class CameraFPSController : MonoBehaviour
 
     private void HitChecker()
     {
-        Ray ray = camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = fpsCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
         if (Physics.Raycast(ray, out hit))
         {
-            rayHit = true;
+            this.rayHit = true;
         }else{
-            rayHit = false;
+            this.rayHit = false;
         }
     }
 

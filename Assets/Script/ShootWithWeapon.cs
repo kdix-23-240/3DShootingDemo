@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class ShootWithWeapon : MonoBehaviour
 {
-    [SerializeField] private new Camera camera;
     void Update()
     {
-        
+        Shoot();
     }
 
     public void Shoot()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Shoot");
+            CameraMuzzleController muzzleController = transform.Find("FPSCamera").Find("SniperRifle").Find("MuzzleCamera").gameObject.GetComponent<CameraMuzzleController>();
+             if (muzzleController.GetRayHit())
+            {
+                Transform hitTransform = muzzleController.GetImpactPoint().transform;
+                if (hitTransform.tag == "Enemy")
+                {
+                    Transform grandParentTransform = hitTransform.parent?.parent;
+                    if (grandParentTransform != null)
+                    {
+                        Destroy(grandParentTransform.gameObject);
+                    }
+                }
+            }
         }
     }
 }
