@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// 銃口の視線を取得するクラス
+/// </summary>
 public class CameraMuzzleController : MonoBehaviour
 {
     [SerializeField] private Camera muzzleCamera;
-    private RaycastHit impactPoint; // Vector3からRaycastHitに変更
+    private RaycastHit impactPoint; // 銃口の延長線が当たった場所
     [SerializeField] private bool rayHit;
 
     void Update()
@@ -12,6 +16,9 @@ public class CameraMuzzleController : MonoBehaviour
         HitChecker();
     }
 
+    /// <summary>
+    /// 銃口の延長線が何かに当たっているかどうか判定
+    /// </summary>
     private void HitChecker()
     {
         Ray ray = muzzleCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -29,7 +36,7 @@ public class CameraMuzzleController : MonoBehaviour
         return rayHit;
     }
 
-    public RaycastHit GetImpactPoint() // Vector3からRaycastHitに変更
+    public RaycastHit GetImpactPoint()
     {
         return impactPoint;
     }

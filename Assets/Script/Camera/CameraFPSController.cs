@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// FPSカメラのコントローラ
+/// </summary>
 public class CameraFPSController : MonoBehaviour
 {
     private float rotationSpeed;
@@ -41,6 +44,9 @@ public class CameraFPSController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// カメラの延長線が何かに当たっているかどうか判定
+    /// </summary>
     private void HitChecker()
     {
         Ray ray = fpsCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -53,5 +59,4 @@ public class CameraFPSController : MonoBehaviour
             this.rayHit = false;
         }
     }
-
 }
